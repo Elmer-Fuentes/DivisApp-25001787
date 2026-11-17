@@ -1,0 +1,38 @@
+﻿# Node / Angular / Ionic
+node_modules/
+www/
+dist/
+out-tsc/
+.angular/
+coverage/
+*.log
+
+# Android: conservar el código nativo y Gradle Wrapper
+.gradle/
+**/build/
+android/.idea/
+android/captures/
+android/local.properties
+android/**/.cxx/
+android/**/.externalNativeBuild/
+android/app/src/main/assets/public/
+android/app/src/main/assets/capacitor.config.json
+android/app/src/main/assets/capacitor.plugins.json
+android/capacitor-cordova-android-plugins/
+*.apk
+*.aab
+*.jks
+*.keystore
+
+# Configuración local
+.env
+.env.*
+!.env.example
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+.verification/
+entrega/
+.android-sdk/
+.gradle-user/
