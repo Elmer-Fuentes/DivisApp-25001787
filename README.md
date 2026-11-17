@@ -51,7 +51,7 @@ Los archivos compilados se generan directamente en `www/`, incluido `www/index.h
 
 ## Android y generación del APK
 
-Instala Android Studio y, desde SDK Manager, Android SDK Platform 34 y Android SDK Build-Tools 34.0.0. Utiliza JDK 17 o una versión compatible con el Gradle Wrapper del proyecto. Configura el SDK en Android Studio o mediante `ANDROID_HOME`; `android/local.properties` es local y no se publica.
+Instala Android Studio y, desde SDK Manager, Android SDK Platform 34 y Android SDK Build-Tools 34.0.0. Utiliza JDK 17 o JDK 21: el Gradle Wrapper está fijado en 8.5. Configura el SDK en Android Studio o mediante `ANDROID_HOME`; `android/local.properties` es local y no se publica.
 
 ```bash
 ionic build
@@ -78,7 +78,7 @@ También puedes generarlo desde PowerShell, con el entorno Android configurado:
 
 ```powershell
 cd android
-.\gradlew.bat assembleDebug
+.\gradlew.bat :app:assembleDebug
 ```
 
 Ruta absoluta en la carpeta de entrega actual:
@@ -93,12 +93,37 @@ Para un APK firmado de distribución, utiliza **Build > Generate Signed App Bund
 
 Se conserva el código fuente, el proyecto nativo Android y `package-lock.json`. `.gitignore` excluye `node_modules/`, `www/`, cachés, configuraciones locales, claves y productos de compilación.
 
-Después de modificar:
+Registra cada archivo modificado en un commit separado. Por ejemplo:
 
 ```bash
-git add .
-git commit -m "Completar DivisApp 25001787"
+git add src/app/home/home.page.ts
+git commit -m "Actualizar conversión y validaciones"
 git push -u origin main
 ```
 
 No utilices `git push --force` para reemplazar un historial existente.
+
+## Comprobaciones realizadas
+
+- Instalación de dependencias completada y versiones registradas en `package-lock.json`; Ionic Angular se fija en 8.4.3 para mantener compatibilidad con el entorno del proyecto.
+- `ionic build`: compilación completada sin errores de TypeScript ni de plantillas Angular. Stencil muestra advertencias `empty-glob` de sus importaciones internas.
+- `ionic serve`: servidor iniciado correctamente en `http://localhost:8100`.
+- Prueba en Chrome con pantalla móvil: título, tasa, cálculo exacto `3125223.375`, presentación `US$3,125,223.38`, conversión automática, ambos botones y validaciones de vacío, negativo y cero comprobados. Sin excepciones JavaScript.
+- `npx cap add android` y `npx cap sync android`: completados.
+- `gradlew.bat :app:assembleDebug`: **BUILD SUCCESSFUL**. APK de depuración generado; firma y nombre/identificador Android verificados. Los 33 archivos web empaquetados coinciden con la compilación de Ionic.
+- Repositorio público comprobado sin autenticación.
+
+En el equipo de preparación no se detectó Android Studio: `npx cap open android` requiere instalarlo o indicar su ejecutable con `CAPACITOR_ANDROID_STUDIO_PATH`. El proyecto Android puede compilarse directamente mediante Gradle con JDK y SDK configurados.
+
+## Entrega a la universidad
+
+Se requieren dos archivos: el PDF con carátula, captura real de la conversión del carné y enlace público al repositorio; y el APK generado. La copia Word es editable y no reemplaza el PDF solicitado.
+
+Los documentos, la captura y la copia del APK se guardan localmente en `entrega/`. Esta carpeta se excluye de Git para que el repositorio conserve el proyecto fuente.
+
+Archivos listos para subir a la plataforma de la universidad:
+
+- `entrega/25001787-Mi-primera-aplicacion-movil-hibrida.pdf`: dos páginas con carátula, captura y URL.
+- `entrega/DivisApp-25001787.apk`: copia del APK generado en `android/app/build/outputs/apk/debug/app-debug.apk`.
+
+También se conserva `entrega/25001787-Mi-primera-aplicacion-movil-hibrida.docx` como documento editable.
