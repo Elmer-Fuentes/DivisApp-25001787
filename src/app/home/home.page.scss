@@ -1,0 +1,29 @@
+﻿:host { --ion-font-family: Arial, Helvetica, sans-serif; }
+ion-toolbar {
+  --background: #ffffff;
+  --color: #17212b;
+  border-bottom: 1px solid #e2e6ea;
+}
+ion-title { font-weight: 600; text-align: center; font-size: 20px; }
+ion-content { --background: #f5f6f8; }
+.page-wrap { width: min(92%, 480px); margin: 0 auto; padding: 24px 0 32px; }
+.hero { margin-bottom: 20px; }
+.hero h1 { margin: 0 0 8px; font-size: 24px; color: #17212b; }
+.hero p { margin: 0; color: #52606d; line-height: 1.5; }
+.converter-card {
+  --background: #ffffff;
+  --color: #17212b;
+  margin: 0;
+  border: 1px solid #dce1e6;
+  box-shadow: none;
+  border-radius: 8px;
+}
+ion-item { --background: #ffffff; --color: #17212b; --padding-start: 0; }
+.rate-row { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; padding: 18px 0; font-size: 14px; }
+ion-button { --border-radius: 6px; min-height: 46px; text-transform: none; font-weight: 600; }
+.clear-button { --background: transparent; --color: #333333; --border-color: #b5bec7; margin-top: 10px; }
+.result-box { margin-top: 20px; padding: 16px; border-radius: 6px; background: #f0f3f5; color: #33404c; }
+.result-box span { display: block; font-size: 14px; margin-bottom: 8px; }
+.result-box strong { display: block; font-size: clamp(22px, 6vw, 30px); color: #17212b; overflow-wrap: anywhere; }
+.error-message { color: #b42318; font-size: 14px; margin: 12px 0 0; }
+.footnote { text-align: center; color: #52606d; font-size: 12px; margin-top: 18px; line-height: 1.5; }
