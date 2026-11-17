@@ -1,0 +1,59 @@
+﻿<ion-header>
+  <ion-toolbar>
+    <ion-title>DivisApp 25001787</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <main class="page-wrap">
+    <div class="hero">
+      <h1>Conversor de divisas</h1>
+      <p>Convierte quetzales a dólares con una tasa fija.</p>
+    </div>
+
+    <ion-card class="converter-card">
+      <ion-card-content>
+        <form (ngSubmit)="convertir()" novalidate>
+          <ion-item lines="full">
+            <ion-input
+              name="quetzales"
+              label="Cantidad en quetzales (Q)"
+              labelPlacement="stacked"
+              type="number"
+              inputmode="decimal"
+              min="0"
+              step="any"
+              required
+              placeholder="0.00"
+              [(ngModel)]="quetzales"
+              (ngModelChange)="actualizarCantidad()"
+              [attr.aria-invalid]="error ? 'true' : null"
+              [attr.aria-describedby]="error ? 'error-cantidad' : null">
+            </ion-input>
+          </ion-item>
+
+          <p *ngIf="error" id="error-cantidad" class="error-message" role="alert">{{ error }}</p>
+
+          <div class="rate-row">
+            <span>Tasa utilizada</span>
+            <strong>Q8 = US$1</strong>
+          </div>
+
+          <ion-button type="submit" expand="block">Convertir</ion-button>
+          <ion-button type="button" class="clear-button" fill="outline" expand="block" (click)="limpiar()">
+            Limpiar
+          </ion-button>
+        </form>
+
+        <section *ngIf="dolares !== null" class="result-box" aria-live="polite" aria-label="Resultado de la conversión">
+          <span>Cantidad ingresada: Q{{ cantidadConvertida | number:'1.2-2':'en-US' }}</span>
+          <span>Tasa utilizada: Q8 = US$1</span>
+          <span>Resultado en dólares</span>
+          <strong>US${{ dolares | number:'1.2-2':'en-US' }}</strong>
+        </section>
+      </ion-card-content>
+    </ion-card>
+
+    <p class="footnote">Universidad Galileo · Desarrollo de aplicaciones móviles</p>
+  </main>
+</ion-content>
